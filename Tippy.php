@@ -18,7 +18,6 @@
 		$invalidBill = false; 
 		$invalidCustom = false; 
 		$invalidSplit = false;
-
 		// Functions
 		// Calculates tip 
 		function calculateTip() {
@@ -27,7 +26,6 @@
 			}
 			return $GLOBALS["bill"] * $GLOBALS["percentage"] / 100;
 		}
-
 		// Check for errors in bill
 		function checkBill($userInput) {
 			// Check if input exists, is a number, and is not equal/less than zero
@@ -38,7 +36,6 @@
 				$GLOBALS["invalidBill"] = false;
 			}
 		}
-
 		// Check for errors in custom percentage
 		function checkPerc($userInput) {
 			if ($GLOBALS["percentage"] == -1) {
@@ -54,15 +51,13 @@
 				$GLOBALS["invalidCustom"] = false;
 			}
 		}
-
 		// Check for errors in split
 		function checkSplit($userInput) {
 			// Check input exists, is a number, is > 0, and is a valid integer
-			if ((isset($userInput) && !is_numeric($userInput)) || $userInput <= 0 || is_int($userInput))) {
+			if (isset($userInput) && !is_numeric($userInput) || $userInput <= 0 || is_int($userInput)) {
 				$GLOBALS["invalidSplit"] = true;
 			}
 		}
-
 		// Form Request
 		if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			$bill = str_replace(",", "", $_POST["bill"]);
@@ -135,4 +130,3 @@
 		</center>
 	</body>
 </html>
-
