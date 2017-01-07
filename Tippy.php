@@ -20,6 +20,7 @@
 		$invalidSplit = false;
 
 		// Functions
+		// Calculates tip 
 		function calculateTip() {
 			if ($GLOBALS["percentage"] == -1) { // if custom
 				return $GLOBALS["bill"] * $GLOBALS["customPerc"] / 100;
@@ -29,6 +30,7 @@
 
 		// Check for errors in bill
 		function checkBill($userInput) {
+			// Check if input exists, is a number, and is not equal/less than zero
 			if ((isset($userInput) && !is_numeric($userInput)) || $userInput <= 0) {
 				$GLOBALS["invalidBill"] = true;
 			}
@@ -40,6 +42,7 @@
 		// Check for errors in custom percentage
 		function checkPerc($userInput) {
 			if ($GLOBALS["percentage"] == -1) {
+				// Check if input exists, is a number, and is not equal/less than zero
 				if ((isset($userInput) && !is_numeric($userInput)) || $userInput <= 0) {
 					$GLOBALS["invalidCustom"] = true;
 				}
@@ -54,7 +57,7 @@
 
 		// Check for errors in split
 		function checkSplit($userInput) {
-			// check input exists, is a number, is > 0, and is a valid integer
+			// Check input exists, is a number, is > 0, and is a valid integer
 			if ((isset($userInput) && !is_numeric($userInput)) || $userInput <= 0 || (floatval($userInput) != intval($userInput))) {
 				$GLOBALS["invalidSplit"] = true;
 			}
@@ -109,7 +112,7 @@
   						if ($invalidCustom) {
     						echo '<p style="color:red"> Please enter a valid percentage </p>';
   						}
-  						//show the split option
+  						// Show the split option
   						echo '<p> Number of people: ';
   						echo '<input type="text" name="split" style="width:25px" value="', $split, '">';
   						if ($invalidSplit) {
@@ -122,9 +125,8 @@
 				if (isset($bill) && !$invalidBill && !$invalidCustom && !$invalidSplit) {
 					echo "<h3> Your Total </h3>";
 					echo "Total: $", $bill + calculateTip(), "</p>";
-					// if splitting the bill with others
+					// If splitting the bill with others
 					if ($split > 1) {
-						$splitTip = ceil(calculateTip()/$split*100)/100; // round up the number
 						$splitTotal = ceil(($bill + calculateTip())/$split*100)/100;
 						echo "Split total: $", $splitTotal, "</p>";
 					}
