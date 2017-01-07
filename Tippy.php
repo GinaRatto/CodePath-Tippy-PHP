@@ -58,7 +58,7 @@
 		// Check for errors in split
 		function checkSplit($userInput) {
 			// Check input exists, is a number, is > 0, and is a valid integer
-			if ((isset($userInput) && !is_numeric($userInput)) || $userInput <= 0 || (floatval($userInput) != intval($userInput))) {
+			if ((isset($userInput) && !is_numeric($userInput)) || $userInput <= 0 || is_int($userInput))) {
 				$GLOBALS["invalidSplit"] = true;
 			}
 		}
